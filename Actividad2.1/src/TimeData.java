@@ -1,49 +1,56 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class TimeData {
-	private BigDecimal segundos = null;
-	private BigDecimal minutos = null;
-	private BigDecimal horas = null;
-	private BigDecimal dias = null;
-	private BigDecimal meses = null;
-	private BigDecimal years = null;
+	private int segundos = 0;
+	private int minutos = 0;
+	private int horas = 0;
+	private int dias = 0;
+	private int meses = 0;
+	private int years = 0;
+	
 	
 	public TimeData(BigDecimal s) {
-		this.segundos = s;
-		this.minutos = segundos.divide(new BigDecimal(60));
-		this.horas = minutos.divide(new BigDecimal(60));
-		this.dias = horas.divide(new BigDecimal(24));
-		this.meses = dias.divide(new BigDecimal(30));
-		this.years = meses.divide(new BigDecimal(12));
 		
+		BigDecimal segundosTotal = s;
+		this.segundos = segundosTotal.remainder(new BigDecimal(60)).intValue();
+		segundosTotal = segundosTotal.divide(new BigDecimal(60), RoundingMode.HALF_UP);
+		this.minutos = segundosTotal.remainder(new BigDecimal(60)).intValue();
+		segundosTotal = segundosTotal.divide(new BigDecimal(60), RoundingMode.HALF_UP);
+		this.horas = segundosTotal.remainder(new BigDecimal(24)).intValue();
+		segundosTotal = segundosTotal.divide(new BigDecimal(24), RoundingMode.HALF_UP);
+		this.dias = segundosTotal.remainder(new BigDecimal(30)).intValue();
+		segundosTotal = segundosTotal.divide(new BigDecimal(30), RoundingMode.HALF_UP);
+		this.meses = segundosTotal.remainder(new BigDecimal(12)).intValue();
+		this.years = segundosTotal.divide(new BigDecimal(12), RoundingMode.HALF_UP).intValue();
 	}
 
-	public BigDecimal getSegundos() {
+	public int getSegundos() {
 		return segundos;
 	}
 
-	public BigDecimal getMinutos() {
+	public int getMinutos() {
 		return minutos;
 	}
 
-	public BigDecimal getHoras() {
+	public int getHoras() {
 		return horas;
 	}
 
-	public BigDecimal getDias() {
+	public int getDias() {
 		return dias;
 	}
 
-	public BigDecimal getYears() {
+	public int getYears() {
 		return years;
 	}
 	
-	public BigDecimal getMeses() {
+	public int getMeses() {
 		return meses;
 	}
 	
 	public String toString() {
-		return "tardaría " + years.toString() + " años, "+meses.toString()+" meses, "+dias.toString() + " dias, " +horas.toString()+ " horas, " +minutos.toString()+ " minutos y " +segundos.toString()+ " segundos.";
+		return years + " años, "+meses+" meses, "+dias + " dias, " +horas+ " horas, " +minutos+ " minutos y " +segundos+ " segundos";
 		
 	}
 	
