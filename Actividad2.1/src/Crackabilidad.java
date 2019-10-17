@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Hashtable;
 import java.util.Set;
 
@@ -30,7 +31,7 @@ public class Crackabilidad {
 	private BigDecimal calculoTiempo(int longitudPassword) {
 		BigDecimal combinaciones = new BigDecimal(Math.pow(chars, (double)longitudPassword));
 		int div = procesadores.get(tipoDeProcesador);
-		BigDecimal segundos = combinaciones.divide(new BigDecimal(div));
+		BigDecimal segundos = combinaciones.divide(new BigDecimal(div), RoundingMode.HALF_UP);
 		return segundos;
 	}
 	
