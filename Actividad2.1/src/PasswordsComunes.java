@@ -14,17 +14,13 @@ public class PasswordsComunes {
 
 	}
 
-	public boolean esComun(String password) throws Exception{
-		if(password == null) {
-			throw new Exception();
-		} else {
-			for (String pas : passwordsComunes) {
-				if (pas.equals(password)) {
-					return true;
-				}
+	public boolean esComun(String password){
+		for (String pas : passwordsComunes) {
+			if (pas.equals(password)) {
+				return true;
 			}
-			return false;
 		}
+		return false;
 		
 	}
 

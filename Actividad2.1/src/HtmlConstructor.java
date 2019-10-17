@@ -12,11 +12,11 @@ public class HtmlConstructor {
 	private String contenido = "<h1>¿Es segura tu contraseña?</h1>\n" + 
 			"    	<h3>Calcula cuanto tardaría un hacker en averiguar tu contraseña usando fuerza bruta</h3>";	//<h1> introduce una...
 	private String formulario ="<form method=\"GET\" action=\"Main\">\n" + 
-			"        	<input type=\"password\" name=\"password\" value=\"Escribe la contraseña\"/>\n" + 
+			"        	<input type=\"password\" name=\"password\" placeholder=\"Escribe la contraseña\"/>\n" + 
 			"        	<p>¿Qué tecnología quieres comprobar?</p>\n" + 
-			"        	<input type=\"radio\" name=\"cpu\" value=\"cpu\"/>\n" + 
-			"        	<input type=\"radio\" name=\"gpu\" value=\"gpu\"/>\n" + 
-			"        	<input type=\"radio\" name=\"grid\" value=\"grid\"/>\n" + 
+			"        	<input type=\"radio\" name=\"procesador\" value=\"cpu\" checked/>CPU\n" + 
+			"        	<input type=\"radio\" name=\"procesador\" value=\"gpu\"/>GPU\n" + 
+			"        	<input type=\"radio\" name=\"procesador\" value=\"grid\"/>Grid\n" + 
 			"        	<input type=\"submit\" value=\"Calcula\"/>\n" + 
 			"    	</form>";
 	private String abreResul = "<div id=\"resultado\">";
