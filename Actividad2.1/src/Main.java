@@ -31,31 +31,32 @@ public class Main extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-//		PrintWriter writer = response.getWriter();
-//		HtmlConstructor pagina = new HtmlConstructor();
-//		Properties properties = new Properties();
-//		String fichero = getServletContext().getRealPath("/passwordsComunes.properties");
-//		properties.load(new FileInputStream(fichero));
-//		
-//		PasswordsComunes paCom = new PasswordsComunes(properties);
-////		HttpSession
-//		String password = request.getParameter("password");	//request contraseña;
-//		
-//		try {
-//			if(paCom.esComun(password)) {
-//				//redirige a web
-//				response.sendRedirect("https://edition.cnn.com/2019/04/22/uk/most-common-passwords-scli-gbr-intl/index.html");
-//			} else {
-//				//calcula tiempo
-//				String procesador = "cpu";	//request procesador
-//				Crackabilidad calc = new Crackabilidad(password, procesador);
-//				pagina.setResul(calc.getTiempoQTarda().toString());
-//			}
-//		} catch (Exception e) {
-//			
-//		}
-//		writer.print(pagina.toString());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		HtmlConstructor pagina = new HtmlConstructor();
+		Properties properties = new Properties();
+		String fichero = getServletContext().getRealPath("/passwordsComunes.properties");
+		properties.load(new FileInputStream(fichero));
+		
+		PasswordsComunes paCom = new PasswordsComunes(properties);
+//		HttpSession
+		String password = request.getParameter("password");	//request contraseña;
+		
+		try {
+			if(paCom.esComun(password)) {
+				//redirige a web
+				response.sendRedirect("https://edition.cnn.com/2019/04/22/uk/most-common-passwords-scli-gbr-intl/index.html");
+			} else {
+				//calcula tiempo
+				String procesador = "cpu";	//request procesador
+				Crackabilidad calc = new Crackabilidad(password, procesador);
+				pagina.setResul(calc.getTiempoQTarda().toString());
+			}
+		} catch (Exception e) {
+			
+		}
+		writer.print(pagina.toString());
 		
 	}
 
