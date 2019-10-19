@@ -1,6 +1,7 @@
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Properties;
 
@@ -35,11 +36,8 @@ public class Main extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HtmlConstructor pagina = new HtmlConstructor();
-		Properties properties = new Properties();
-		String fichero = getServletContext().getRealPath("/WebContent/passwordsComunes.properties");
-		properties.load(new FileInputStream(fichero));
-
-		PasswordsComunes paCom = new PasswordsComunes(properties);
+		HtmlConstructor paginaConResul = pagina;
+		PasswordsComunes paCom = new PasswordsComunes();
 //		HttpSession
 		String password = request.getParameter("password"); // request contraseña;
 		if(password!=null) {
@@ -51,12 +49,15 @@ public class Main extends HttpServlet {
 				// calcula tiempo
 				String procesador = request.getParameter("procesador"); // request procesador
 				Crackabilidad calc = new Crackabilidad(password, procesador);
-				pagina.setResul(calc.getTiempoQTarda().toString());
+				paginaConResul.setResul(calc.getTiempoQTarda().toString());
+
+				writer.print(paginaConResul.toString());
 			}
+		} else {
+			writer.print(pagina.toString());
 		}
 				
 
-		writer.print(pagina.toString());
 
 	}
 
