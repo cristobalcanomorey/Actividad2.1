@@ -1,7 +1,7 @@
 
 public class HtmlConstructor {
 
-	private String hastaBody = "<html>\n" + 
+	private String hastaBody = "<!DOCTYPE html><html>\n" + 
 			"    <head>\n" + 
 			"        <title>TODO supply a title</title>\n" + 
 			"        <meta charset=\"UTF-8\">\n" + 
@@ -49,7 +49,7 @@ public class HtmlConstructor {
 	 */
 	public void setResul(String resultado) {
 		if(resultado != null) {
-			this.resul = "Se tardarían "+resultado+ " en descifrar tu contraseña";
+			this.resul = "Se tardarían "+resultado+ " en descifrar tu contraseña.";
 		}
 	}
 	
