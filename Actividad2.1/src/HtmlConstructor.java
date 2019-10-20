@@ -8,10 +8,10 @@ public class HtmlConstructor {
 			"        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + 
 			"        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n" + 
 			"    </head>\n" + 
-			"    <body>";	//<html ... <body>
+			"    <body>";	
 	private String contenido = "<h1>¡No quieres saber de lo que son capaces!</h1>\n" + 
 			"        <h3>¡Una contraseña <span class=\"importante\">fácil de recordar</span> es una contraseña <span class=\"importante\">fácil de robar</span>!</h3>\n" + 
-			"        <img src=\"imgs/Hack.jpg\" alt=\"imgHacker\"/>";	//<h1> introduce una...
+			"        <img src=\"imgs/Hack.jpg\" alt=\"imgHacker\"/>";	
 	private String formulario ="<form method=\"GET\" action=\"Main\">\n" + 
 			"            <div>\n" + 
 			"                <div id=\"izquierda\">\n" + 
@@ -34,17 +34,28 @@ public class HtmlConstructor {
 			"            <h2>¡Comprueba <span class=\"importante\">tu contraseña</span> antes de que sea DEMASIADO TARDE!</h2>\n" + 
 			"        </footer>";
 	private String cierraBody = "</body></html>";
-		
+	
+	/***
+	 * Instancia la clase HtmlConstructor
+	 */
 	public HtmlConstructor() {
 		
 	}
 	
+	/***
+	 * Escribe el resultado en la página web
+	 * 
+	 * @param resultado Resultado de la operación
+	 */
 	public void setResul(String resultado) {
 		if(resultado != null) {
 			this.resul = "Se tardarían "+resultado+ " en descifrar tu contraseña";
 		}
 	}
 	
+	/***
+	 * Construye la página concatenando sus elementos.
+	 */
 	public String toString() {
 		return hastaBody + contenido +formulario + abreResul + resul + cierraResul + pie + cierraBody;
 	}

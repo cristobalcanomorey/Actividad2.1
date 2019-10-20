@@ -1,9 +1,6 @@
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,20 +24,24 @@ public class Main extends HttpServlet {
 	}
 
 	/**
+	 * Pide la contraseña, si está vacía escribe el html sin la respuesta. Si no,
+	 * comprueba si la contraseña es común, si es común redirige a la web. Si no,
+	 * calcula el tiempo que tarda y lo escribe en la web y finalmente escribe el
+	 * html.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HtmlConstructor pagina = new HtmlConstructor();
 		HtmlConstructor paginaConResul = pagina;
 		PasswordsComunes paCom = new PasswordsComunes();
-//		HttpSession
 		String password = request.getParameter("password"); // request contraseña;
-		if(password!=null) {
+		if (password != null) {
 			if (paCom.esComun(password)) {
 				// redirige a web
 				response.sendRedirect(
@@ -56,8 +57,6 @@ public class Main extends HttpServlet {
 		} else {
 			writer.print(pagina.toString());
 		}
-				
-
 
 	}
 

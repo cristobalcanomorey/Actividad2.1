@@ -8,10 +8,14 @@ public class TimeData {
 	private int dias = 0;
 	private int meses = 0;
 	private int years = 0;
-	
-	
+
+	/***
+	 * Reparte los segundos a diferentes unidades de tiempo.
+	 * 
+	 * @param s Segundos que tardaría
+	 */
 	public TimeData(BigDecimal s) {
-		
+
 		BigDecimal segundosTotal = s;
 		this.segundos = segundosTotal.remainder(new BigDecimal(60)).intValue();
 		segundosTotal = segundosTotal.divide(new BigDecimal(60), RoundingMode.HALF_UP);
@@ -44,14 +48,18 @@ public class TimeData {
 	public int getYears() {
 		return years;
 	}
-	
+
 	public int getMeses() {
 		return meses;
 	}
-	
+
+	/***
+	 * Concatena todas las unidades de tiempo en un string.
+	 */
 	public String toString() {
-		return years + " años, "+meses+" meses, "+dias + " dias, " +horas+ " horas, " +minutos+ " minutos y " +segundos+ " segundos";
-		
+		return years + " años, " + meses + " meses, " + dias + " dias, " + horas + " horas, " + minutos + " minutos y "
+				+ segundos + " segundos";
+
 	}
-	
+
 }
